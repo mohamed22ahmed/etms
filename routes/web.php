@@ -34,8 +34,14 @@ Route::post('/new_password','WebsiteController@password_reset');
 
 
 // Dashboard Routes
-Route::get('/profile','DashboardController@profile');
-Route::get('/assignment','DashboardController@assignment');
+// Trainee Routes
 Route::get('/user_courses','DashboardController@user_courses');
+Route::get('/courses','DashboardController@courses');
+Route::get('/register_course/{id}','DashboardController@register_course');
+Route::get('/assignment','DashboardController@assignment');
 Route::get('/attendance','DashboardController@attendance');
-Route::get('/settings','DashboardController@settings');
+//trainer Routes
+Route::get('/trainer_assignment','DashboardController@trainer_assignment');
+Route::post('/trainer_assignment','DashboardController@trainer_assignment_create');
+Route::get('/trainer_attendance','DashboardController@trainer_attendance');
+Route::post('/trainer_attendance','DashboardController@trainer_attendance_create');

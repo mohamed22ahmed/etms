@@ -57,11 +57,17 @@ class WebsiteController extends Controller
                 if(Training_dept_stuff::where('deanship_id',$deanship->id)->count()>0)
                     return redirect('/profile');
             }else if($request->mbrGroup==2){
-                if(Trainer::where('deanship_id',$deanship->id)->count()>0)
-                    return redirect('/profile');
+                if(Trainer::where('deanship_id',$deanship->id)->count()>0){
+                    session()->put('type','trainer');
+                    session()->put('id',$deanship->id);
+                    return redirect('/trainer_assignment');
+                }
             }else{
-                if(Trainee::where('deanship_id',$deanship->id)->count()>0)
-                    return redirect('/profile');
+                if(Trainee::where('deanship_id',$deanship->id)->count()>0){
+                    session()->put('type','trainee');
+                    session()->put('id',$deanship->id);
+                    return redirect('/user_courses');
+                }
             }
         }
 

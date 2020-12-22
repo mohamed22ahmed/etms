@@ -42,8 +42,11 @@
                 background-color: rgb(15, 83, 85);
                 color: white;
             }
-        </style>
 
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
     </head>
 
     <body>
@@ -63,14 +66,19 @@
         </nav>
 
         <br><br><br><br><h1></h1>
-
-        <div class="trainee-profile-nav">
-            <a href="/profile" class="{{ url()->current()==url('/profile')?'shaih':''">Profile</a>
-            <a href="/user_courses" class="{{ url()->current()==url('/user_courses')?'shaih':''">Courses</a>
-            <a href="/attendance" class="{{ url()->current()==url('/attendance')?'shaih':''">Attendance</a>
-            <a href="/assignment" class="{{ url()->current()==url('/assignment')?'shaih':''">Assignment</a>
-            <a href="/settings" class="{{ url()->current()==url('/settings')?'shaih':''">Settings</a>
-        </div>
+        @if(session('type')=='trainee')
+            <div class="trainee-profile-nav">
+                <a href="/user_courses" class="{{ url()->current()==url('/user_courses')?'shaih':''">My Courses</a>
+                <a href="/courses" class="{{ url()->current()==url('/courses')?'shaih':''">All Courses</a>
+                <a href="/attendance" class="{{ url()->current()==url('/attendance')?'shaih':''">Attendance</a>
+                <a href="/assignment" class="{{ url()->current()==url('/assignment')?'shaih':''">Assignment</a>
+            </div>
+        @else
+            <div class="trainee-profile-nav">
+                <a href="/trainer_attendance" class="{{ url()->current()==url('/trainer_attendance')?'shaih':''">Attendance</a>
+                <a href="/trainer_assignment" class="{{ url()->current()==url('/trainer_assignment')?'shaih':''">Assignment</a>
+            </div>
+        @endif
         @yield('content')
     </body>
 </html>
